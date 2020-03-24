@@ -1,0 +1,1 @@
+{"version":3,"file":"temperatureModel.js","sourceRoot":"","sources":["../../src/models/temperatureModel.ts"],"names":[],"mappings":";;;;;AAAA,wDAAgC;AAEhC,eAAe;AACf,MAAM,kBAAkB,GAAG,IAAI,kBAAQ,CAAC,MAAM,CAAC;IAC7C,IAAI,EAAE;QACJ,IAAI,EAAE,MAAM;QACZ,MAAM,EAAE,IAAI;KACb;CACF,CAAC,CAAC;AAEH,uBAAuB;AACV,QAAA,kBAAkB,GAAG,kBAAQ,CAAC,KAAK,CAC9C,aAAa,EACb,kBAAkB,CACnB,CAAC"}
