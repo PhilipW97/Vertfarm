@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-// Setup schema
+// Setup schemaschema
 const temperaturesSchema = new mongoose.Schema({
   temperature: Number,
   date: Date.now
@@ -11,3 +11,4 @@ export const TemperaturesSchema = mongoose.model(
   "temperature",
   temperaturesSchema
 );
+o;
