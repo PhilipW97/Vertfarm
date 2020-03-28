@@ -1,65 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import moment from "moment";
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend
+  Tooltip
 } from "recharts";
 
-const data = [
-  {
-    name: "Mon",
-    pressure: 30,
-    temperature: 11,
-    amt: 49
-  },
-  {
-    name: "Tue",
-    pressure: 32,
-    temperature: 12,
-    amt: 55
-  },
-  {
-    name: "Wed",
-    pressure: 27,
-    temperature: 14,
-    amt: 54
-  },
-  {
-    name: "Thur",
-    pressure: 26,
-    temperature: 20,
-    amt: 65
-  },
-  {
-    name: "Fri",
-    pressure: 31,
-    temperature: 19,
-    amt: 37
-  },
-  {
-    name: "Sat",
-    pressure: 46,
-    temperature: 17,
-    amt: 1
-  },
-  {
-    name: "Sun",
-    pressure: 35,
-    temperature: 6,
-    amt: 56
-  }
-];
-
 export const Chart = () => {
+  const [temp, setTemp] = useState([]);
+
+  const fetchData = async () => {
+    let newTemp = await fetch("https://vertfarm.herokuapp.com/temp");
+    let jsonTemp = await newTemp.json();
+    console.log("newTemp", jsonTemp);
+    jsonTemp.map(temp => {
+      temp.date = moment(temp.date).format("DD.MM");
+      //temp.date = moment(temp.date).format("DD.MM.YYYY, HH:mm:ss");
+    });
+    setTemp(jsonTemp);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <LineChart
       width={500}
       height={300}
-      data={data}
+      data={temp}
       margin={{
         top: 25,
         right: 30,
@@ -68,17 +40,15 @@ export const Chart = () => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="date" />
       <YAxis />
       <Tooltip />
-      <Legend />
       <Line
         type="monotone"
-        dataKey="temperature"
+        dataKey="temp"
         stroke="#8884d8"
         activeDot={{ r: 8 }}
       />
-      <Line type="monotone" dataKey="pressure" stroke="#82ca9d" />
     </LineChart>
   );
 };
