@@ -15,6 +15,7 @@ import {
 export const LightChart = () => {
   const range = [0, 250];
   const [data, setData] = useState([]);
+  const from = moment().subtract(3, "days").format("YYYY-MM-DD");
 
   const getHours = date => {
     return moment(moment(date).format("HH:mm"), "HH:mm").diff(
@@ -100,20 +101,20 @@ export const LightChart = () => {
   };
 
   const fetchData = async () => {
-    const data = [
-      { date: "2020-04-30T03:30:00.000Z", lightState: false },
-      { date: "2020-04-30T07:30:00.000Z", lightState: true },
-      { date: "2020-05-01T17:30:00.000Z", lightState: false }
-    ];
-
-    let newLight = await fetch("https://vertfarm.herokuapp.com/light");
+    let newLight = await fetch(
+      `https://vertfarm.herokuapp.com/light?from=${from}`
+    );
     let jsonLight = await newLight.json();
-    console.log("jsonLight", jsonLight);
 
-    let dates = getDayData(jsonLight);
-    let timeFrames = getTimeFrames(dates);
+    if (jsonLight.length) {
+      let dates = getDayData(jsonLight);
+      let timeFrames = getTimeFrames(dates);
 
-    setData(getFinalList(timeFrames));
+      setData(getFinalList(timeFrames));
+      return;
+    }
+
+    setData([]);
   };
 
   useEffect(() => {
@@ -155,10 +156,7 @@ export const LightChart = () => {
                     axisLine={false}
                   />
                   <ZAxis type="number" dataKey="value" range={range} />
-                  <Tooltip
-                    cursor={{ strokeDasharray: "3 3" }}
-                    wrapperStyle={{ zIndex: 100 }}
-                  />
+                  <Tooltip wrapperStyle={{ zIndex: 100 }} />
                   <Scatter data={data} fill="#8884d8" />
                 </ScatterChart>
               </ResponsiveContainer>
