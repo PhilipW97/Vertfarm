@@ -18,9 +18,8 @@ export const TempChart = () => {
   const fetchData = async () => {
     let newTemp = await fetch("https://vertfarm.herokuapp.com/temp");
     let jsonTemp = await newTemp.json();
-    jsonTemp.map(temp => {
-      temp.date = moment(temp.date).format("DD.MM");
-      //temp.date = moment(temp.date).format("DD.MM.YYYY, HH:mm:ss");
+    jsonTemp.map((temp) => {
+      temp.date = moment(temp.date).format("HH:mm");
     });
     setTemp(jsonTemp);
   };
