@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import moment from "moment";
 import {
   LineChart,
@@ -9,7 +8,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 export const TempChart = () => {
@@ -18,7 +17,7 @@ export const TempChart = () => {
   const fetchData = async () => {
     let newTemp = await fetch("https://vertfarm.herokuapp.com/temp");
     let jsonTemp = await newTemp.json();
-    jsonTemp.map((temp) => {
+    jsonTemp.forEach((temp) => {
       temp.date = moment(temp.date).format("HH:mm");
     });
     setTemp(jsonTemp);
@@ -37,7 +36,7 @@ export const TempChart = () => {
             top: 25,
             right: 30,
             left: 20,
-            bottom: 5
+            bottom: 5,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />

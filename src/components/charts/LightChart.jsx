@@ -9,7 +9,7 @@ import {
   YAxis,
   ZAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 export const LightChart = () => {
@@ -17,16 +17,16 @@ export const LightChart = () => {
   const [data, setData] = useState([]);
   const from = moment().subtract(3, "days").format("YYYY-MM-DD");
 
-  const getHours = date => {
+  const getHours = (date) => {
     return moment(moment(date).format("HH:mm"), "HH:mm").diff(
       moment().startOf("day"),
       "hours"
     );
   };
 
-  const getDayData = data => {
+  const getDayData = (data) => {
     let dates = [];
-    data.forEach(content => {
+    data.forEach((content) => {
       if (content.lightState !== undefined) {
         const date = moment(content.date).format("DD.MM.YYYY");
 
@@ -39,9 +39,9 @@ export const LightChart = () => {
     return dates;
   };
 
-  const getFinalList = timeFrames => {
+  const getFinalList = (timeFrames) => {
     let finalData = [];
-    Object.keys(timeFrames).forEach(times => {
+    Object.keys(timeFrames).forEach((times) => {
       let day = [];
       for (let i = 0; i < 24; i++) {
         const isOnn = isOn(i, timeFrames[times]);
@@ -59,7 +59,7 @@ export const LightChart = () => {
 
   const isOn = (index, times) => {
     let isOff = false;
-    times.forEach(timeRange => {
+    times.forEach((timeRange) => {
       if (timeRange[0] <= index && index <= timeRange[1]) {
         isOff = true;
       }
@@ -68,9 +68,9 @@ export const LightChart = () => {
     return isOff;
   };
 
-  const getTimeFrames = dates => {
+  const getTimeFrames = (dates) => {
     let timeFrames = [];
-    Object.keys(dates).forEach(key => {
+    Object.keys(dates).forEach((key) => {
       let anotherList = [];
       dates[key].forEach((value, index) => {
         const nextOne = dates[key][index + 1];
@@ -106,6 +106,8 @@ export const LightChart = () => {
     );
     let jsonLight = await newLight.json();
 
+    console.log("jsonLight", jsonLight);
+
     if (jsonLight.length) {
       let dates = getDayData(jsonLight);
       let timeFrames = getTimeFrames(dates);
@@ -123,47 +125,45 @@ export const LightChart = () => {
 
   return (
     <ScrollWrapper>
-      {data.map(data => {
-        return (
-          <>
-            <Date>{data[0].date}</Date>
-            <ChartWrapper>
-              <ResponsiveContainer height="100%" width="100%">
-                <ScatterChart
-                  width={800}
-                  height={20}
-                  margin={{
-                    top: 10,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                  }}
-                >
-                  <XAxis
-                    type="category"
-                    dataKey="hour"
-                    name="hour"
-                    interval={0}
-                    tickLine={{ transform: "translate(0, -6)" }}
-                  />
-                  <YAxis
-                    type="number"
-                    dataKey="index"
-                    height={0}
-                    width={0}
-                    tick={false}
-                    tickLine={false}
-                    axisLine={false}
-                  />
-                  <ZAxis type="number" dataKey="value" range={range} />
-                  <Tooltip wrapperStyle={{ zIndex: 100 }} />
-                  <Scatter data={data} fill="#8884d8" />
-                </ScatterChart>
-              </ResponsiveContainer>
-            </ChartWrapper>
-          </>
-        );
-      })}
+      {data.map((data) => (
+        <>
+          <Date>{data[0].date}</Date>
+          <ChartWrapper>
+            <ResponsiveContainer height="100%" width="100%">
+              <ScatterChart
+                width={800}
+                height={20}
+                margin={{
+                  top: 10,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                }}
+              >
+                <XAxis
+                  type="category"
+                  dataKey="hour"
+                  name="hour"
+                  interval={0}
+                  tickLine={{ transform: "translate(0, -6)" }}
+                />
+                <YAxis
+                  type="number"
+                  dataKey="index"
+                  height={0}
+                  width={0}
+                  tick={false}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <ZAxis type="number" dataKey="value" range={range} />
+                <Tooltip wrapperStyle={{ zIndex: 100 }} />
+                <Scatter data={data} fill="#8884d8" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </ChartWrapper>
+        </>
+      ))}
     </ScrollWrapper>
   );
 };

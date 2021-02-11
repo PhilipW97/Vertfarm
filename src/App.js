@@ -1,26 +1,24 @@
 import React from "react";
-import logo from "./logo.png";
-import "./App.css";
-import { TempChart } from "./components/TempChart";
-import { LightChart } from "./components/LightChart";
+import { TempChart } from "./components/charts/TempChart";
+import { LightChart } from "./components/charts/LightChart";
 import { Header } from "./components/Header";
 
 import styled from "styled-components";
 
-function App() {
-  return (
-    <div className="App">
-      <Wrapper>
-        <Header header="Temperature" />
-        <TempChart />
-      </Wrapper>
-      <Wrapper>
-        <Header header="Light" />
-        <LightChart />
-      </Wrapper>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <Wrapper>
+      <Header header="Temperature" />
+      <TempChart />
+      
+    </Wrapper>
+    <Wrapper>
+      <Header header="Light" />
+      <LightChart />
+    </Wrapper>
+  </div>
+)
+   
 
 export default App;
 
