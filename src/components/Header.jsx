@@ -6,7 +6,10 @@ export const Header = () => {
   return (
     <HeaderBar>
       <HeaderBarContent>
-        <HeaderTitle>Vertfarm</HeaderTitle>
+        <HeaderTitle>
+          Vert
+          <Farm>farm</Farm>
+        </HeaderTitle>
         <IconStyles>
           <Sun />
         </IconStyles>
@@ -38,11 +41,19 @@ const HeaderBarContent = styled.div`
 const HeaderTitle = styled.h1`
   margin: 0px;
 
-  color: #${(p) => p.theme.colors.textColor};
+  font-family: Comfortaa;
+  font-weight: 700;
+
+  color: #${(p) => p.theme.colors.primaryTextColor};
+`;
+
+const Farm = styled.span`
+  color: #${(p) => p.theme.colors.secondaryTextColor};
 `;
 
 const IconStyles = styled.span`
   margin-left: auto;
+  cursor: pointer;
 
   & > svg {
     height: 35px;
