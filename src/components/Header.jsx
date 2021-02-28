@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Sun } from "./icons/Sun";
+import { Sun } from "../icons/Sun";
+import { Moon } from "../icons/Moon";
 
-export const Header = () => {
+export const Header = props => {
+  const { hasDarkTheme, toggleTheme } = props;
+
   return (
     <HeaderBar>
       <HeaderBarContent>
@@ -10,9 +13,9 @@ export const Header = () => {
           Vert
           <Farm>farm</Farm>
         </HeaderTitle>
-        <IconStyles>
-          <Sun />
-        </IconStyles>
+        <ThemeToggle onClick={() => toggleTheme()}>
+          {hasDarkTheme ? <Sun /> : <Moon />}
+        </ThemeToggle>
       </HeaderBarContent>
     </HeaderBar>
   );
@@ -24,7 +27,7 @@ const HeaderBar = styled.div`
 
   margin: 0px;
 
-  background: #${(p) => p.theme.colors.primaryColor};
+  background: #${p => p.theme.colors.primaryColor};
 `;
 
 const HeaderBarContent = styled.div`
@@ -44,16 +47,19 @@ const HeaderTitle = styled.h1`
   font-family: Comfortaa;
   font-weight: 700;
 
-  color: #${(p) => p.theme.colors.primaryTextColor};
+  color: #${p => p.theme.colors.primaryTextColor};
 `;
 
 const Farm = styled.span`
-  color: #${(p) => p.theme.colors.secondaryTextColor};
+  color: #${p => p.theme.colors.secondaryTextColor};
 `;
 
-const IconStyles = styled.span`
+const ThemeToggle = styled.button`
   margin-left: auto;
   cursor: pointer;
+
+  background: none;
+  border: none;
 
   & > svg {
     height: 35px;
