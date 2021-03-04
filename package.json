@@ -7,6 +7,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "moment": "^2.24.0",
     "react": "^16.13.1",
+    "react-datepicker": "^3.6.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
