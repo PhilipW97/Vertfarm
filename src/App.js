@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./components/Header";
 import { darkTheme, lightTheme } from "./constants";
 import { useDarkTheme } from "./components/hooks/useDarkTheme/useDarkTheme";
-import { Temperature } from "./components/temperature/Temperature";
 
 const App = () => {
   const [theme, toggleTheme] = useDarkTheme();
@@ -14,7 +13,6 @@ const App = () => {
     <ThemeProvider theme={{ colors: currentTheme }}>
       <MainWrapper>
         <Header hasDarkTheme={hasDarkTheme} toggleTheme={() => toggleTheme()} />
-        <Temperature />
       </MainWrapper>
     </ThemeProvider>
   );
