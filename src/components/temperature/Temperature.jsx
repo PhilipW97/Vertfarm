@@ -15,8 +15,16 @@ export const Temperature = () => {
   const getData = async (date = startDate) => {
     setStartDate(date);
 
-    const IsoDate = date.toISOString();
-    const temp = await getTemp(IsoDate, IsoDate);
+    // Get start of first day and end of last day
+    const startDate = date;
+    const endDate = new Date(startDate.getTime());
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 99);
+
+    const isoStartDate = startDate.toISOString();
+    const isoEndDate = endDate.toISOString();
+
+    const temp = await getTemp(isoStartDate, isoEndDate);
     setTempData(temp);
   };
 
