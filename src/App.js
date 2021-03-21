@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { Header } from "./components/Header";
+import { MainHeader } from "./components/MainHeader";
 import { darkTheme, lightTheme } from "./constants";
 import { useDarkTheme } from "./components/hooks/useDarkTheme/useDarkTheme";
 import { Temperature } from "./components/temperature/Temperature";
@@ -13,7 +13,10 @@ const App = () => {
   return (
     <ThemeProvider theme={{ colors: currentTheme }}>
       <MainWrapper>
-        <Header hasDarkTheme={hasDarkTheme} toggleTheme={() => toggleTheme()} />
+        <MainHeader
+          hasDarkTheme={hasDarkTheme}
+          toggleTheme={() => toggleTheme()}
+        />
         <Temperature />
       </MainWrapper>
     </ThemeProvider>
