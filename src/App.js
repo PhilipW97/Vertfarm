@@ -4,6 +4,7 @@ import { MainHeader } from "./components/MainHeader";
 import { darkTheme, lightTheme } from "./constants";
 import { useDarkTheme } from "./components/hooks/useDarkTheme/useDarkTheme";
 import { Temperature } from "./components/temperature/Temperature";
+import { Light } from "./components/light/Light";
 
 const App = () => {
   const [theme, toggleTheme] = useDarkTheme();
@@ -18,6 +19,7 @@ const App = () => {
           toggleTheme={() => toggleTheme()}
         />
         <Temperature />
+        <Light />
       </MainWrapper>
     </ThemeProvider>
   );

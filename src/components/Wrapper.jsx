@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const StyledWrapper = styled.div`
   display: flex;
+  flex-direction: column;
 
   margin: 15px;
   padding: 20px 15px;
   border-radius: 24px;
 
-  background: #${p => p.theme.colors.primaryColor};
+  background: #${(p) => p.theme.colors.primaryColor};
 
   @media (min-width: 1000px) {
     margin: 25px;
