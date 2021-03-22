@@ -1,68 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Sun } from "../icons/Sun";
-import { Moon } from "../icons/Moon";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export const Header = props => {
-  const { hasDarkTheme, toggleTheme } = props;
+export const Header = ({ title, subTitle, onChange }) => {
+  const [startDate, setStartDate] = useState(new Date());
+
+  const onPickerChange = (date = startDate) => {
+    setStartDate(date);
+    onChange(date);
+  };
 
   return (
-    <HeaderBar>
-      <HeaderBarContent>
-        <HeaderTitle>
-          Vert
-          <Farm>farm</Farm>
-        </HeaderTitle>
-        <ThemeToggle onClick={() => toggleTheme()}>
-          {hasDarkTheme ? <Sun /> : <Moon />}
-        </ThemeToggle>
-      </HeaderBarContent>
-    </HeaderBar>
+    <HeaderWrapper>
+      <Title>
+        <HeaderTitle>{title}</HeaderTitle>
+        <HeaderSubtitle>{subTitle}</HeaderSubtitle>
+      </Title>
+      <DayPicker
+        selected={startDate}
+        onChange={(date) => onPickerChange(date)}
+        dateFormat="dd.MM.yyyy"
+        fixedHeight
+        withPortal
+      />
+    </HeaderWrapper>
   );
 };
 
-const HeaderBar = styled.div`
-  height: 85px;
-  width: 100%;
-
-  margin: 0px;
-
-  background: #${p => p.theme.colors.primaryColor};
-`;
-
-const HeaderBarContent = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+
   align-items: center;
-
-  height: 85px;
-  width: 90%;
-  max-width: 1000px;
-
-  margin: 0 auto;
+  justify-content: space-between;
 `;
 
-const HeaderTitle = styled.h1`
-  margin: 0px;
-
-  font-family: Comfortaa;
-  font-weight: 700;
-
-  color: #${p => p.theme.colors.primaryTextColor};
+const Title = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
-const Farm = styled.span`
-  color: #${p => p.theme.colors.secondaryTextColor};
+const HeaderTitle = styled.h2`
+  margin: 0px 20px 0px 0px;
+
+  font-size: 23px;
+  color: #${(p) => p.theme.colors.primaryTextColor};
 `;
 
-const ThemeToggle = styled.button`
+const HeaderSubtitle = styled.h3`
+  margin: 1px 0px 0px 0px;
+
+  color: #${(p) => p.theme.colors.tertiaryTextColor};
+  font-size: 15px;
+`;
+
+const DayPicker = styled(DatePicker)`
   margin-left: auto;
-  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px 15px;
 
-  background: none;
+  color: #${(p) => p.theme.colors.primaryTextColor};
+  font-weight: 700;
+  font-family: "Comfortaa";
+
+  background: #${(p) => p.theme.colors.secondaryColor};
+  border-radius: 6px;
   border: none;
 
-  & > svg {
-    height: 35px;
-    width: 35px;
+  cursor: pointer;
+
+  @media (min-width: 500px) {
+    margin-top: 0px;
   }
 `;
