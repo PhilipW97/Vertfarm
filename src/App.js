@@ -28,8 +28,13 @@ const App = () => {
 export default App;
 
 const MainWrapper = styled.div`
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+
+  padding-bottom: 30px;
 
   background: #${p => p.theme.colors.backgroundColor};
 `;
