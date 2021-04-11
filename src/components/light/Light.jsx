@@ -30,23 +30,22 @@ export const Light = () => {
   return (
     <StyledWrapper>
       <Header title="Lights" subTitle="Table" onChange={getData} />
-      <Table cellSpacing="0">
-        {lightData.length > 0 ? (
-          lightData.map((light) => {
-            const lightStateString = light.lightState ? "ON" : "OFF";
-            return (
-              <TableRow key={light.id}>
+      {lightData.length > 0 ? (
+        <Table cellSpacing="0">
+          {lightData.map((light, index) => (
+            <tbody key={index}>
+              <TableRow>
                 <TableElement>{light.date}</TableElement>
                 <TableElement state={light.lightState}>
-                  {lightStateString}
+                  {light.lightState ? "ON" : "OFF"}
                 </TableElement>
               </TableRow>
-            );
-          })
-        ) : (
-          <>Sorry, but there is no data available for your selected date.</>
-        )}
-      </Table>
+            </tbody>
+          ))}
+        </Table>
+      ) : (
+        <>Sorry, but there is no data available for your selected date.</>
+      )}
     </StyledWrapper>
   );
 };
