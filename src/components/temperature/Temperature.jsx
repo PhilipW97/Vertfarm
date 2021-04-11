@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { StyledWrapper } from "../Wrapper";
 import { TempChart } from "./TempChart";
 import { Header } from "../Header";
-import { getTemp } from "../api";
+import { getTemp } from "../../api";
 
 export const Temperature = () => {
   const [tempData, setTempData] = useState();

@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { StyledWrapper } from "../Wrapper";
 import { Header } from "../Header";
-import { getLight } from "../api";
+import { getLight } from "../../api";
 
 export const Light = () => {
   const [lightData, setLightData] = useState([]);
