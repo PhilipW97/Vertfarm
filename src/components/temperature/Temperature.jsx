@@ -40,14 +40,3 @@ export const Temperature = () => {
 const TemperatureWrapper = styled.div`
   width: 100%;
 `;
-
-const TempHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 500px) {
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-`;
