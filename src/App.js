@@ -18,8 +18,10 @@ const App = () => {
           hasDarkTheme={hasDarkTheme}
           toggleTheme={() => toggleTheme()}
         />
-        <Temperature />
-        <Light />
+        <ContentWrapper>
+          <Temperature />
+          <Light />
+        </ContentWrapper>
       </MainWrapper>
     </ThemeProvider>
   );
@@ -28,8 +30,20 @@ const App = () => {
 export default App;
 
 const MainWrapper = styled.div`
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
 
-  background: #${p => p.theme.colors.backgroundColor};
+  padding-bottom: 30px;
+
+  background: #${(p) => p.theme.colors.backgroundColor};
+`;
+
+const ContentWrapper = styled.div`
+  width: 90%;
+  max-width: 1300px;
+
+  margin: 0 auto;
 `;

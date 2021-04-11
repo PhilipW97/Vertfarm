@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { StyledWrapper } from "../Wrapper";
 import { TempChart } from "./TempChart";
 import { Header } from "../Header";
-import { getTemp } from "../api";
+import { getTemp } from "../../api";
 
 export const Temperature = () => {
   const [tempData, setTempData] = useState();
@@ -39,15 +39,4 @@ export const Temperature = () => {
 
 const TemperatureWrapper = styled.div`
   width: 100%;
-`;
-
-const TempHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 500px) {
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-  }
 `;

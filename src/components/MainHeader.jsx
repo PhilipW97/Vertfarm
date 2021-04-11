@@ -36,7 +36,7 @@ const HeaderBarContent = styled.div`
 
   height: 85px;
   width: 90%;
-  max-width: 1000px;
+  max-width: 1300px;
 
   margin: 0 auto;
 `;

@@ -30,10 +30,15 @@ export const Header = ({ title, subTitle, onChange }) => {
 
 const HeaderWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`
