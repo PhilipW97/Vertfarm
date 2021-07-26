@@ -2,9 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { MainHeader } from "./components/MainHeader";
 import { darkTheme, lightTheme } from "./constants";
-import { useDarkTheme } from "./components/hooks/useDarkTheme/useDarkTheme";
-import { Temperature } from "./components/temperature/Temperature";
-import { Light } from "./components/light/Light";
+import { useDarkTheme } from "./hooks/useDarkTheme/useDarkTheme";
 
 const App = () => {
   const [theme, toggleTheme] = useDarkTheme();
