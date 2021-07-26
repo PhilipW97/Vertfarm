@@ -3,6 +3,8 @@ import styled, { ThemeProvider } from "styled-components";
 import { MainHeader } from "./components/MainHeader";
 import { darkTheme, lightTheme } from "./constants";
 import { useDarkTheme } from "./hooks/useDarkTheme/useDarkTheme";
+import { Temperature } from "./features/temperature/Temperature";
+import { Light } from "./features/light/Light";
 
 const App = () => {
   const [theme, toggleTheme] = useDarkTheme();
@@ -31,7 +33,7 @@ const MainWrapper = styled.div`
   height: 100%;
   min-height: 100vh;
   width: 100vw;
-  max-width: 100vw;
+  max-width: 100%;
   box-sizing: border-box;
 
   padding-bottom: 30px;

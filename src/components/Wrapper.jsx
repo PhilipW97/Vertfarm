@@ -5,6 +5,7 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
 
   width: 100%;
+  height: 80vh;
   box-sizing: border-box;
 
   padding: 20px;
@@ -12,6 +13,10 @@ export const StyledWrapper = styled.div`
   border-radius: 24px;
 
   background: #${(p) => p.theme.colors.primaryColor};
+
+  @media (min-width: 500px) {
+    height: 40vh;
+  }
 
   @media (min-width: 1000px) {
     margin: 25px 0px;

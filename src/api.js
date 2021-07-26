@@ -6,7 +6,7 @@ const getTemp = async (startDate, endDate) => {
   );
   let jsonTemp = await newTemp.json();
   jsonTemp.forEach((temp) => {
-    temp.date = moment(temp.date).format("HH:mm");
+    temp.date = moment(temp.date).format("DD.MM-HH:mm");
   });
   return jsonTemp;
 };

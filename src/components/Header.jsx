@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
+import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Header = ({ title, subTitle, onChange }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const onPickerChange = (date = startDate) => {
-    setStartDate(date);
-    onChange(date);
+  const onPickerChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+    const endFallback = end ? end : new Date(start.getTime());
+    onChange(start, endFallback);
   };
+
+  const datepickerValue = `${moment(startDate).format("DD.MM.YYYY")}  ${
+    endDate != null ? ` - ${moment(endDate).format("DD.MM.YYYY")}` : ""
+  }`;
 
   return (
     <HeaderWrapper>
@@ -17,13 +27,24 @@ export const Header = ({ title, subTitle, onChange }) => {
         <HeaderTitle>{title}</HeaderTitle>
         <HeaderSubtitle>{subTitle}</HeaderSubtitle>
       </Title>
-      <DayPicker
-        selected={startDate}
-        onChange={(date) => onPickerChange(date)}
-        dateFormat="dd.MM.yyyy"
-        fixedHeight
-        withPortal
-      />
+      <DateButton onClick={() => setShowDatePicker(!showDatePicker)}>
+        {datepickerValue}
+      </DateButton>
+      {showDatePicker && (
+        <DatePickerOverlay>
+          <DatePicker
+            selected={startDate}
+            onChange={onPickerChange}
+            startDate={startDate}
+            endDate={endDate}
+            fixedHeight
+            selectsRange
+            dateFormat="dd.MM.yyyy"
+            inline
+            onClickOutside={() => setShowDatePicker(false)}
+          />
+        </DatePickerOverlay>
+      )}
     </HeaderWrapper>
   );
 };
@@ -61,8 +82,8 @@ const HeaderSubtitle = styled.h3`
   font-size: 15px;
 `;
 
-const DayPicker = styled(DatePicker)`
-  margin-left: auto;
+const DateButton = styled.button`
+  margin-right: auto;
   margin-top: 10px;
   padding: 7px 15px;
 
@@ -78,5 +99,25 @@ const DayPicker = styled(DatePicker)`
 
   @media (min-width: 500px) {
     margin-top: 0px;
+    margin-left: auto;
+    margin-right: 0px;
   }
+`;
+
+const DatePickerOverlay = styled.div`
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
