@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Sun } from "../icons/Sun";
-import { Moon } from "../icons/Moon";
+import { Sun } from "../static/icons/Sun";
+import { Moon } from "../static/icons/Moon";
 
 export const MainHeader = (props) => {
   const { hasDarkTheme, toggleTheme } = props;
