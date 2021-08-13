@@ -22,6 +22,7 @@ export const LightTable = ({ lightData }) => {
 
 const TableWrapper = styled.div`
   width: 100%;
+  max-height: 400px;
 
   margin-top: 20px;
   overflow-y: scroll;
